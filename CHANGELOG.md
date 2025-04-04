@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.0.4 (2025-04-04)
+
+* Release: 0.0.4 (#24)
+* Switch to setup-bazel action
+* Bump lsp and aspect version (#23)
+* Add debug adapter support (#22)
+* Generate JVM class names for source files (#21)
+
+# Changelog
+
 ## v0.0.3 (2025-04-01)
 
 * Bump LSP version (#20)
