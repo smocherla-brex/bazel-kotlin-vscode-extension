@@ -57,7 +57,12 @@ class ExtractLspInfo : CliktCommand() {
             it.sourceFile to it.jvmClassNames
         }
 
+        val filenameToPackage = jvmNameMappings.associate {
+            it.sourceFile to it.packageName
+        }
+
         // When creating source file protos, include the JVM class names
+        // and the package
         val sourceFilesProtos = sourceFiles?.map { fullSourcePath ->
             // Extract just the filename
             val filename = fullSourcePath.substringAfterLast('/')
@@ -65,9 +70,13 @@ class ExtractLspInfo : CliktCommand() {
             // Look up JVM names for this source file
             val jvmNames = filenameToJvmNames[filename] ?: emptySet()
 
+            // Look up the package for the source file
+            val packageName = filenameToPackage[filename] ?: ""
+
             SourceFile.newBuilder()
                 .setPath(fullSourcePath)
                 .addAllJvmClassNames(jvmNames)
+                .setPackage(packageName)
                 .build()
         }
 

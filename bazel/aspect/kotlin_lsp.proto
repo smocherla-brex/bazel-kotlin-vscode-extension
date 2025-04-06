@@ -38,6 +38,9 @@ message SourceFile {
     // this is to allow the debugger to set the breakpoints using JDI which
     // requires class filters with JVM names
     repeated string jvm_class_names = 2;
+
+    // The package in which this source file is contained
+    string package = 3;
 }
 
 message ClassPathEntry {
